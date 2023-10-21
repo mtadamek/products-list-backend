@@ -1,11 +1,15 @@
 import { DataSource } from "typeorm";
+import { Product } from "./entities/Product";
+import path from "path";
+
+const databasePath = path.resolve(__dirname, "..", "database", "db.sqlite");
 
 const dataSource = new DataSource({
   type: "sqlite",
-  database: "../database/db.sqlite",
+  database: databasePath,
   synchronize: true,
   logging: true,
-  entities: [],
+  entities: [Product],
   migrations: [],
   subscribers: [],
 });
