@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import dataSource from "./data-source";
+import productsRouter from "./routes/products";
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ const app: Express = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
+
+app.use("/products", productsRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Products API is here!");
