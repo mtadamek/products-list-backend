@@ -11,7 +11,7 @@ Aby zainstalować aplikację należy w pierwszej kolejności zainstalować zale�
 ```
 
 Domyślnym portem na którym jest uruchamiana aplikacja jest `4000`.
-Można zmienić tą konfigurację dodając plik `.env` i uzupełnić w oparciu o plik `.env.example`
+Można zmienić tą konfigurację jak i inne parametry dodając plik `.env` i uzupełnić w oparciu o plik `.env.example`
 
 Następnie można uruchomić w trybie developerskim
 
