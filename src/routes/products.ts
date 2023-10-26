@@ -10,7 +10,7 @@ const productRepository = dataSource.getRepository(Product);
 router.get("/", async (_: Request, res: Response) => {
   try {
     const products = await productRepository.find();
-    res.status(200).send(products);
+    res.status(200).json(products);
   } catch (error) {
     res.sendStatus(500);
   }
@@ -24,7 +24,7 @@ router.get(
     try {
       const { id } = req.params;
       const product = await productRepository.findOneBy({ id: Number(id) });
-      product ? res.status(200).send(product) : res.sendStatus(404);
+      product ? res.status(200).json(product) : res.sendStatus(404);
     } catch (error) {
       res.sendStatus(500);
     }
@@ -37,9 +37,10 @@ router.post(
   validationResultHandle,
   async (req: Request, res: Response) => {
     try {
-      await productRepository.insert(req.body);
-      res.sendStatus(201);
+      const product = await productRepository.insert(req.body);
+      res.status(201).json(product.raw);
     } catch (error) {
+      console.log(error);
       res.sendStatus(500);
     }
   }

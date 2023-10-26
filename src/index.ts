@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import dataSource from "./data-source";
 import productsRouter from "./routes/products";
 
@@ -18,11 +19,12 @@ dataSource
 const app: Express = express();
 const port = process.env.PORT || 4000;
 
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
 app.use("/products", productsRouter);
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (_: Request, res: Response) => {
   res.send("Products API is here!");
 });
 
